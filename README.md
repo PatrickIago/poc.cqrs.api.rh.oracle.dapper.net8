@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Estrutura da API
 - ASP.NET Core 8.0: Framework para desenvolvimento da Microsoft.
 - AutoMapper: Biblioteca para realizar mapeamento entre objetos.
@@ -46,3 +47,6 @@
 📧 Email: gfmaurila@gmail.com
 
 
+=======
+# poc.cqrs.api.rh.oracle.dapper.net8
+>>>>>>> acd33375e14e10cce6e331ecca0440bcd19a9f2e
