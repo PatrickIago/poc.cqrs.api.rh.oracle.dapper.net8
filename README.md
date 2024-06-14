@@ -1,0 +1,1 @@
+# poc.cqrs.api.rh.oracle.dapper.net8
