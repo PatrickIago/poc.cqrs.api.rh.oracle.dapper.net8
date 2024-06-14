@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\User\Interfaces\**" />
+    <Compile Remove="Entities\User\VO\**" />
+    <Compile Remove="Events\**" />
+    <EmbeddedResource Remove="Entities\User\Interfaces\**" />
+    <EmbeddedResource Remove="Entities\User\VO\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <None Remove="Entities\User\Interfaces\**" />
+    <None Remove="Entities\User\VO\**" />
+    <None Remove="Events\**" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="12.0.1" />
+		<PackageReference Include="FluentValidation" Version="11.5.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="poc.core.api.net8.api.net8" Version="1.0.0" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Entities\MKT\Post\DTO\" />
+  </ItemGroup>
+
+</Project>

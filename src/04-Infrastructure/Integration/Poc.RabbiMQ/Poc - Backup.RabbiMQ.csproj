@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MassTransit" Version="8.1.1" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.1.1" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+		<PackageReference Include="poc.core.api.net8.api.net8" Version="1.0.0" />
+		<PackageReference Include="RabbitMQ" Version="3.6.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\02-Application\Poc.Contract\Poc.Contract.csproj" />
+	  <ProjectReference Include="..\..\..\03-Domain\Poc.Domain\Poc.Domain.csproj" />
+	  <ProjectReference Include="..\Poc.Auth\Poc.Auth.csproj" />
+	</ItemGroup>
+
+</Project>
