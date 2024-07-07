@@ -3,7 +3,7 @@ using Poc.Domain.Entities.Departament;
 namespace Poc.Domain.Entities.Employee.Events;
 public abstract class EmployeeBaseEvent : Event
 {
-    protected EmployeeBaseEvent(int id, string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartamentEntity department)
+    protected EmployeeBaseEvent(int id, string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartmentEntity department)
     {
         Id = id;
         Name = name;
@@ -24,5 +24,5 @@ public abstract class EmployeeBaseEvent : Event
     public int JobId { get; private set; }
     public decimal Salary { get; private set; }
     public int? ManagerId { get; private set; }
-    public DepartamentEntity Departament  { get; private set; }
+    public DepartmentEntity Departament  { get; private set; }
 }

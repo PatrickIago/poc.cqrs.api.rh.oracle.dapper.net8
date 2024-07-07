@@ -11,7 +11,7 @@ public class EmployeeSqlDTO
     public int JobId { get; set; }
     public decimal Salary { get; set; }
     public int ManagerId { get; set; }
-    public DepartamentEntity Department { get; set; }
+    public DepartmentEntity Department { get; set; }
 
     public EmployeeEntity MapToResult()
     {

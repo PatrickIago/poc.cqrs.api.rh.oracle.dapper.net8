@@ -42,7 +42,6 @@ public class UpdateRegionCommandHandler : IRequestHandler<UpdateRegionCommand, R
             return Result.NotFound($"Nenhum registro encontrado pelo Id: {request.RegionId}");
 
         entity = new RegionEntity(request.RegionId, request.RegionName);
-
         await _repo.Update(entity);
 
         // Executa eventos

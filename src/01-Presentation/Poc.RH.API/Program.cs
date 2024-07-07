@@ -74,3 +74,4 @@ app.Logger.LogInformation("----- Iniciando a aplicação - RH...");
 //await app.MigrateAsync(); // Aqui faz migrations
 
 app.Run();
+

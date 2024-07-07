@@ -2,6 +2,7 @@
 using poc.core.api.net8.api.net8.api.net8.Abstractions;
 using Poc.Domain.Entities.Departament;
 using Poc.Domain.Entities.Employee.Events;
+using System.Drawing;
 
 namespace Poc.Domain.Entities.Employee;
 
@@ -53,7 +54,7 @@ public class EmployeeEntity : BaseEOraclentity, IAggregateRoot
     /// <summary>
     /// Obtém ou define o departamento ao qual o funcionário está associado.
     /// </summary>
-    public DepartamentEntity Department { get; private set; }
+    public DepartmentEntity Department { get; private set; }
 
     /// <summary>
     /// Construtor padrão da classe EmployeeEntity.
@@ -73,7 +74,7 @@ public class EmployeeEntity : BaseEOraclentity, IAggregateRoot
     /// <param name="salary">Salário do funcionário.</param>
     /// <param name="managerId">ID do gerente do funcionário.</param>
     /// <param name="department">Departamento ao qual o funcionário está associado.</param>
-    public EmployeeEntity(string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartamentEntity department)
+    public EmployeeEntity(string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartmentEntity department)
     {
         Name = name;
         Email = email;
@@ -98,7 +99,7 @@ public class EmployeeEntity : BaseEOraclentity, IAggregateRoot
     /// <param name="salary">Salário do funcionário.</param>
     /// <param name="managerId">ID do gerente do funcionário.</param>
     /// <param name="department">Departamento ao qual o funcionário está associado.</param>
-    public EmployeeEntity(int id, string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartamentEntity department)
+    public EmployeeEntity(int id, string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartmentEntity department)
     {
         Id = id;
         Name = name;
@@ -119,5 +120,17 @@ public class EmployeeEntity : BaseEOraclentity, IAggregateRoot
     public EmployeeEntity(int id)
     {
         AddDomainEvent(new EmployeeDeletedEvent(Id, Name, Email, PhoneNumber, HireDate, JobId, Salary, ManagerId, Department));
+    }
+
+    public void SetEmployeeId(decimal employeeId)
+    {
+        if (employeeId == default)
+        {
+            employeeId = Id;
+        }
+        else
+        {
+            throw new InvalidOperationException("O ID só pode ser definido uma vez.");
+        }
     }
 }

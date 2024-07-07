@@ -2,7 +2,7 @@
 namespace Poc.Domain.Entities.Department.Events;
 public abstract class DepartmentBaseEvent : Event
 {
-    protected DepartmentBaseEvent(int id, string departmentName, int? managerId, string location)
+    protected DepartmentBaseEvent(decimal id, string departmentName, decimal managerId, decimal location)
     {
         Id = id;
         DepartmentName = departmentName;
@@ -10,8 +10,8 @@ public abstract class DepartmentBaseEvent : Event
         Location = location;
     }
 
-    public int Id { get; private set; }
+    public decimal Id { get; private set; }
     public string DepartmentName { get; private set; }
-    public int? ManagerId { get; private set; }
-    public string Location { get; private set; }
+    public decimal ManagerId { get; private set; }
+    public decimal Location { get; private set; }
 }

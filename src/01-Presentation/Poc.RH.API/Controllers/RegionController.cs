@@ -20,7 +20,7 @@ namespace Poc.RH.API.Controllers;
 [Produces("application/json")]
 [ApiController]
 [Description("Controller responsável por cadastrar registro.")]
-[ApiExplorerSettings(GroupName = "Region")]
+[ApiExplorerSettings(GroupName = "Employee")]
 public class RegionController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -47,7 +47,7 @@ public class RegionController : ControllerBase
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(typeof(ApiResponse<List<RegionQueryModel>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
-    [Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
+    //[Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
     public async Task<IActionResult> GetAll()
         => (await _mediator.Send(new GetRegionQuery())).ToActionResult();
 
@@ -66,7 +66,7 @@ public class RegionController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
-    [Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
+    //[Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
     public async Task<IActionResult> GetById(decimal id)
         => (await _mediator.Send(new GetRegionByIdQuery(id))).ToActionResult();
 
@@ -83,7 +83,7 @@ public class RegionController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse<CreateRegionResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
-    [Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
+    //[Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
     public async Task<IActionResult> Create([FromBody] CreateRegionCommand command)
         => (await _mediator.Send(command)).ToActionResult();
 
@@ -102,7 +102,7 @@ public class RegionController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
-    [Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
+    //[Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
     public async Task<IActionResult> Update([FromBody] UpdateRegionCommand command)
         => (await _mediator.Send(command)).ToActionResult();
 
@@ -121,7 +121,7 @@ public class RegionController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
-    [Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
+   // [Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
     public async Task<IActionResult> Delete(decimal id)
         => (await _mediator.Send(new DeleteRegionCommand(id))).ToActionResult();
 }

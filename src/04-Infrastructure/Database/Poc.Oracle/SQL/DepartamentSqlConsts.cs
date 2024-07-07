@@ -1,7 +1,8 @@
-﻿using Poc.Oracle.DTO;
+﻿using Poc.Oracle.DTO; 
+
 namespace Poc.Oracle.SQL;
 
-public static class DepartmentSqlConsts
+public static class DepartamentSqlConsts
 {
     public const string SQL_GET =
     @$"
@@ -19,25 +20,27 @@ public static class DepartmentSqlConsts
             SELECT DEPARTMENT_ID as {nameof(DepartmentSqlDTO.Id)}, 
                    DEPARTMENT_NAME as {nameof(DepartmentSqlDTO.Name)}, 
                    MANAGER_ID as {nameof(DepartmentSqlDTO.ManagerId)}, 
-                   LOCATION as {nameof(DepartmentSqlDTO.Location)}
+                   LOCATION_ID as {nameof(DepartmentSqlDTO.Location)}
             FROM HR.DEPARTMENTS
             WHERE DEPARTMENT_ID = :PR_DEPARTMENT_ID
         ";
 
+
     public const string SQL_INSERT =
     @$"
-            INSERT INTO HR.DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION) 
-            VALUES (:PR_DEPARTMENT_ID, :PR_DEPARTMENT_NAME, :PR_MANAGER_ID, :PR_LOCATION)
+            INSERT INTO HR.DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID) 
+            VALUES (:PR_DEPARTMENT_ID, :PR_DEPARTMENT_NAME, :PR_MANAGER_ID, :PR_LOCATION_ID)
         ";
 
     public const string SQL_UPDATE =
     @$"
-            UPDATE HR.DEPARTMENTS
-            SET DEPARTMENT_NAME = :PR_DEPARTMENT_NAME,
-                MANAGER_ID = :PR_MANAGER_ID,
-                LOCATION = :PR_LOCATION
-            WHERE DEPARTMENT_ID = :PR_DEPARTMENT_ID
+           UPDATE HR.DEPARTMENTS
+           SET DEPARTMENT_NAME = :PR_DEPARTMENT_NAME,
+               MANAGER_ID = :PR_MANAGER_ID,
+               LOCATION_ID = :PR_LOCATION_ID
+           WHERE DEPARTMENT_ID = :PR_DEPARTMENT_ID
         ";
+
 
     public const string SQL_DELETE =
     @$"

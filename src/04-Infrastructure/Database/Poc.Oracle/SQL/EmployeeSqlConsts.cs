@@ -5,14 +5,14 @@ public static class EmployeeSqlConsts
     public const string SQL_GET =
     @$"
             SELECT EMPLOYEE_ID as {nameof(EmployeeSqlDTO.Id)}, 
-                   NAME as {nameof(EmployeeSqlDTO.Name)}, 
+                   FIRST_NAME as {nameof(EmployeeSqlDTO.Name)}, 
                    EMAIL as {nameof(EmployeeSqlDTO.Email)},
                    PHONE_NUMBER as {nameof(EmployeeSqlDTO.PhoneNumber)},
                    HIRE_DATE as {nameof(EmployeeSqlDTO.HireDate)},
                    JOB_ID as {nameof(EmployeeSqlDTO.JobId)},
                    SALARY as {nameof(EmployeeSqlDTO.Salary)},
                    MANAGER_ID as {nameof(EmployeeSqlDTO.ManagerId)},
-                   DEPARTMENT_ID as {nameof(EmployeeSqlDTO.Department)}
+                   DEPARTMENT_ID as {nameof(EmployeeSqlDTO.Department.Id)}
             FROM HR.EMPLOYEES
         ";
 
@@ -21,14 +21,14 @@ public static class EmployeeSqlConsts
     public const string SQL_GET_BY_ID =
     @$"
             SELECT EMPLOYEE_ID as {nameof(EmployeeSqlDTO.Id)}, 
-                   NAME as {nameof(EmployeeSqlDTO.Name)}, 
+                   FIRST_NAME as {nameof(EmployeeSqlDTO.Name)}, 
                    EMAIL as {nameof(EmployeeSqlDTO.Email)},
                    PHONE_NUMBER as {nameof(EmployeeSqlDTO.PhoneNumber)},
                    HIRE_DATE as {nameof(EmployeeSqlDTO.HireDate)},
                    JOB_ID as {nameof(EmployeeSqlDTO.JobId)},
                    SALARY as {nameof(EmployeeSqlDTO.Salary)},
                    MANAGER_ID as {nameof(EmployeeSqlDTO.ManagerId)},
-                   DEPARTMENT_ID as {nameof(EmployeeSqlDTO.Department)}
+                   DEPARTMENT_ID as {nameof(EmployeeSqlDTO.Department.Id)}
             FROM HR.EMPLOYEES
             WHERE EMPLOYEE_ID = :PR_EMPLOYEE_ID
         ";

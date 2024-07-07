@@ -31,8 +31,4 @@
     <ProjectReference Include="..\Poc.Query\Poc.Query.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Employee\Events\" />
-  </ItemGroup>
-
 </Project>
