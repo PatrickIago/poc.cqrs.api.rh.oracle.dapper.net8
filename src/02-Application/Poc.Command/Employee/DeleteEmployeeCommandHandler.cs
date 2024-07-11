@@ -8,7 +8,7 @@ using Poc.Contract.Command.Employee.Validators;
 using Poc.Domain.Entities.Employee;
 
 namespace Poc.Command.Employee;
-public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand,Result>
+public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand, Result>
 {
     private readonly DeleteEmployeeCommandValidator _validator;
     private readonly IEmployeeWriteOnlyRepository _repo;
@@ -29,19 +29,21 @@ public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeComman
         if (!validationResult.IsValid)
             return Result.Invalid(validationResult.AsErrors());
 
-        var entity = await _repo.Get(request.Id);
+        // Obtendo o registro da base.
+        var entity = await _repo.Get(request.EmployeeId);
         if (entity == null)
-            return Result.NotFound($"Nenhum registro encontrado pelo Id: {request.Id}");
+            return Result.NotFound($"Nenhum registro encontrado pelo Id: {request.EmployeeId}");
 
-        entity = new EmployeeEntity(request.Id);
+        entity = new EmployeeEntity(request.EmployeeId);
 
-        await _repo.Delete(entity.Id);
+        await _repo.Delete(entity.EmployeeId);
 
+        // Executa eventos
         foreach (var domainEvent in entity.DomainEvents)
             await _mediator.Publish(domainEvent);
 
         entity.ClearDomainEvents();
 
-        return Result.SuccessWithMessage("Funcionario Removido com sucesso!");
+        return Result.SuccessWithMessage("Removido com sucesso!");
     }
 }

@@ -1,6 +1,4 @@
 ﻿using Poc.Contract.Query.Departament.ViewModels;
-using Poc.Domain.Entities.Departament;
-
 namespace Poc.Contract.Command.Departament.Interfaces;
 public interface IDepartmentWriteOnlyRepository
 {

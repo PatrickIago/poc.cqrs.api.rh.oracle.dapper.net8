@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Poc.Contract.Command.Departament.Interfaces;
 using Poc.Contract.Command.Departament.Request;
 using Poc.Contract.Command.Departament.Validators;
-using Poc.Domain.Entities.Departament;
 
 namespace Poc.Command.Departament;
 public class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartmentCommand, Result>

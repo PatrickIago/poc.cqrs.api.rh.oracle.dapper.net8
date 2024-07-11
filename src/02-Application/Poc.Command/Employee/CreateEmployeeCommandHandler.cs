@@ -1,22 +1,21 @@
-﻿using Ardalis.Result; 
-using Ardalis.Result.FluentValidation; 
-using MediatR; 
-using Microsoft.Extensions.Logging; 
-using Poc.Contract.Command.Employee.Interfaces; 
-using Poc.Contract.Command.Employee.Request; 
-using Poc.Contract.Command.Employee.Response; 
-using Poc.Contract.Command.Employee.Validators; 
-using Poc.Domain.Entities.Employee; 
+﻿using Ardalis.Result;
+using Ardalis.Result.FluentValidation;
+using MediatR;
+using Microsoft.Extensions.Logging;
+using Poc.Contract.Command.Employee.Interfaces;
+using Poc.Contract.Command.Employee.Request;
+using Poc.Contract.Command.Employee.Response;
+using Poc.Contract.Command.Employee.Validators;
+using Poc.Domain.Entities.Employee;
 
-namespace Poc.Command.Employee; 
+namespace Poc.Command.Employee;
 
 public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, Result<CreateEmployeeResponse>>
 {
-
-    private readonly CreateEmployeeCommandValidator _validator; 
-    private readonly IEmployeeWriteOnlyRepository _repo; 
-    private readonly ILogger<CreateEmployeeCommandHandler> _logger; 
-    private readonly IMediator _mediator; 
+    private readonly CreateEmployeeCommandValidator _validator;
+    private readonly IEmployeeWriteOnlyRepository _repo;
+    private readonly ILogger<CreateEmployeeCommandHandler> _logger;
+    private readonly IMediator _mediator;
 
     public CreateEmployeeCommandHandler(CreateEmployeeCommandValidator validator, IEmployeeWriteOnlyRepository repo, ILogger<CreateEmployeeCommandHandler> logger, IMediator mediator)
     {
@@ -26,30 +25,19 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
         _mediator = mediator;
     }
 
-    // Método Handle que é executado quando o comando CreateEmployeeCommand é disparado
     public async Task<Result<CreateEmployeeResponse>> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
-        // Valida o comando recebido
         var validationResult = await _validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
-            return Result.Invalid(validationResult.AsErrors()); // Retorna erros de validação se houver
+            return Result.Invalid(validationResult.AsErrors());
 
-        // Cria uma nova entidade Employee com os dados do comando
-        var entity = new EmployeeEntity(request.Name, request.Email, request.PhoneNumber, request.HireDate, request.JobId, request.Salary, request.ManagerId, request.Department);
-
-        // Salva a entidade no repositório
+        var entity = new EmployeeEntity(request.FirstName, request.LastName, request.Email, request.Phone, request.HireDate,request.JobId, request.Salary, request.CommissionPct, request.ManagerId, request.DepartmentId);
         await _repo.Create(entity);
 
-        // Publica eventos de domínio
-        foreach (var domainEvent in entity.DomainEvents)
-            await _mediator.Publish(domainEvent);
+        foreach (var domainEvents in entity.DomainEvents)
+            await _mediator.Publish(domainEvents);
 
-        // Limpa os eventos de domínio após a publicação
-        entity.ClearDomainEvents();
+        return Result.Success(new CreateEmployeeResponse(entity.EmployeeId), "Cadastrado com sucesso!");
 
-        // Retorna um resultado de sucesso com a resposta do comando
-        return Result.Success(new CreateEmployeeResponse(entity.Id), "Funcionario Cadastrado com sucesso!");
     }
-
-    //trata a criação de um novo empregado, valida os dados, salva a entidade, publica eventos de domínio, e retorna uma resposta de sucesso.
 }

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using Poc.Contract.Query.Departament.Interfaces;
-using Poc.Contract.Query.Departament.ViewModels;
 using poc.core.api.net8.Interface;
+using Poc.Contract.Query.Departament.Interfaces;
 using Poc.Contract.Query.Departament.Request;
+using Poc.Contract.Query.Departament.ViewModels;
 namespace Poc.Command.Departament.Events;
 
 public class DepartmentUpdateEventHandler : INotificationHandler<DepartmentUpdatedEvent>

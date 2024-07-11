@@ -1,12 +1,7 @@
-﻿using poc.core.api.net8; 
-using poc.core.api.net8.api.net8.api.net8.Abstractions; 
-using Poc.Domain.Entities.Department.Events; 
+﻿using poc.core.api.net8;
+using poc.core.api.net8.api.net8.api.net8.Abstractions;
+using Poc.Domain.Entities.Department.Events;
 
-namespace Poc.Domain.Entities.Departament;
-
-/// <summary>
-/// Entidade que representa um departamento na aplicação.
-/// </summary>
 public class DepartmentEntity : BaseEOraclentity, IAggregateRoot
 {
     public decimal Id { get; set; }
@@ -39,6 +34,7 @@ public class DepartmentEntity : BaseEOraclentity, IAggregateRoot
     public DepartmentEntity(decimal id)
     {
         // Adicionando um evento de exclusão de departamento ao excluir o departamento.
+        Id = id;
         AddDomainEvent(new DepartmentDeletedEvent(Id, Name, ManagerId, Location));
     }
 

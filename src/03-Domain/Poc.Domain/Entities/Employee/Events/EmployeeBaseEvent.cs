@@ -1,28 +1,32 @@
 ﻿using poc.core.api.net8.Events;
-using Poc.Domain.Entities.Departament;
 namespace Poc.Domain.Entities.Employee.Events;
+
 public abstract class EmployeeBaseEvent : Event
 {
-    protected EmployeeBaseEvent(int id, string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartmentEntity department)
+    protected EmployeeBaseEvent(decimal employeeId, string firstName, string lastName, string email, string phone, DateTime hireDate, string jobId, decimal salary, decimal commissionPct, int managerId, int departmentId)
     {
-        Id = id;
-        Name = name;
+        EmployeeId = employeeId;
+        FirstName = firstName;
+        LastName = lastName;
         Email = email;
-        PhoneNumber = phoneNumber;
+        Phone = phone;
         HireDate = hireDate;
         JobId = jobId;
         Salary = salary;
+        CommissionPct = commissionPct;
         ManagerId = managerId;
-        Departament = department;
+        DepartmentId = departmentId;
     }
 
-    public int Id { get; private set; }
-    public string Name { get; private set; }
+    public decimal EmployeeId { get; private set; }
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
     public string Email { get; private set; }
-    public string PhoneNumber { get; private set; }
+    public string Phone { get; private set; }
     public DateTime HireDate { get; private set; }
-    public int JobId { get; private set; }
+    public string JobId { get; private set; }
     public decimal Salary { get; private set; }
-    public int? ManagerId { get; private set; }
-    public DepartmentEntity Departament  { get; private set; }
+    public decimal CommissionPct { get; private set; }
+    public int ManagerId { get; private set; }
+    public int DepartmentId { get; private set; }
 }

@@ -2,6 +2,6 @@
 namespace Poc.Contract.Query.Employee.Interfaces;
 public interface IEmployeeReadOnlyRepository
 {
+    Task<EmployeeQueryModel> Get(decimal id);
     Task<List<EmployeeQueryModel>> Get();
-    Task<EmployeeQueryModel> Get(int id);
 }

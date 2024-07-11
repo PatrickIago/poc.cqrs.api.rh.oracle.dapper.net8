@@ -6,6 +6,6 @@ namespace Poc.Contract.Query.Departament.Request;
 public class GetDepartmentQuery : IRequest<Result<List<DepartmentQueryModel>>>
 {
     public GetDepartmentQuery()
-    {     
+    {
     }
 }

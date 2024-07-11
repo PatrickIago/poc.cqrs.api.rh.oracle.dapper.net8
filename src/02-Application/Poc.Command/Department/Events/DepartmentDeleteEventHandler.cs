@@ -1,18 +1,17 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using Poc.Contract.Query.Employee.Interfaces;
-using Poc.Contract.Query.Employee.ViewModels;
 using poc.core.api.net8.Interface;
+using Poc.Contract.Query.Departament.Interfaces;
 using Poc.Contract.Query.Departament.Request;
+using Poc.Contract.Query.Departament.ViewModels;
 
-namespace Poc.Command.Departament.Events;
 public class DepartmentDeleteEventHandler : INotificationHandler<DepartmentDeletedEvent>
 {
     private readonly ILogger<DepartmentDeleteEventHandler> _logger;
-    private readonly IEmployeeReadOnlyRepository _repo;
-    private readonly IRedisCacheService<List<EmployeeQueryModel>> _cacheService;
+    private readonly IDepartmentReadOnlyRepository _repo;
+    private readonly IRedisCacheService<List<DepartmentQueryModel>> _cacheService;
 
-    public DepartmentDeleteEventHandler(ILogger<DepartmentDeleteEventHandler> logger, IEmployeeReadOnlyRepository repo, IRedisCacheService<List<EmployeeQueryModel>> cacheService)
+    public DepartmentDeleteEventHandler(ILogger<DepartmentDeleteEventHandler> logger, IDepartmentReadOnlyRepository repo, IRedisCacheService<List<DepartmentQueryModel>> cacheService)
     {
         _logger = logger;
         _repo = repo;

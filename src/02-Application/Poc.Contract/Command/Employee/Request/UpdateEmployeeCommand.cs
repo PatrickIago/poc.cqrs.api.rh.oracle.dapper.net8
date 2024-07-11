@@ -1,39 +1,26 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Poc.Domain.Entities.Departament;
 using System.ComponentModel.DataAnnotations;
 
 namespace Poc.Contract.Command.Employee.Request;
 public class UpdateEmployeeCommand : IRequest<Result>
 {
     [Required]
-    public int Id { get; set; }
-
+    public decimal EmployeeId { get; set; }
     [Required]
-    [MaxLength(100)]
+    [MaxLength(50)]
     [DataType(DataType.Text)]
-    public string Name { get; set; }
-
+    public string FirstName { get; set; }
     [Required]
-    [EmailAddress]
+    [MaxLength(50)]
+    [DataType(DataType.Text)]
+    public string LastName { get; set; }
     public string Email { get; set; }
-
-    [Required]
-    [Phone]
-    public string PhoneNumber { get; set; }
-
-    [Required]
+    public string Phone { get; set; }
     public DateTime HireDate { get; set; }
-
-    [Required]
-    public int JobId { get; set; }
-
-    [Required]
-    [Range(0, double.MaxValue)]
+    public string JobId { get; set; }
     public decimal Salary { get; set; }
-
-    public int? ManagerId { get; set; } 
-
-    [Required]
-    public DepartmentEntity Department { get; set; }
+    public decimal CommissionPct { get; set; }
+    public int ManagerId { get; set; }
+    public int DepartmentId { get; set; }
 }

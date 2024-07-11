@@ -1,18 +1,18 @@
 ﻿using Ardalis.Result;
-using poc.core.api.net8.Interface;
-using Poc.Contract.Query.Departament.Interfaces;
-using Poc.Contract.Query.Departament.ViewModels;
-using Poc.Contract.Query.Departament.Validators;
-using Poc.Contract.Query.Departament.Request;
 using Ardalis.Result.FluentValidation;
 using MediatR;
+using poc.core.api.net8.Interface;
+using Poc.Contract.Query.Departament.Interfaces;
+using Poc.Contract.Query.Departament.Request;
+using Poc.Contract.Query.Departament.Validators;
+using Poc.Contract.Query.Departament.ViewModels;
 
 namespace Poc.Query.Departament;
 public class GetDepartmentByIdQueryHandler : IRequestHandler<GetDepartmentByIdQuery, Result<DepartmentQueryModel>>
 {
 
-    private readonly IDepartmentReadOnlyRepository _repo; 
-    private readonly IRedisCacheService<DepartmentQueryModel> _cacheService; 
+    private readonly IDepartmentReadOnlyRepository _repo;
+    private readonly IRedisCacheService<DepartmentQueryModel> _cacheService;
     private readonly GetDepartmentByIdQueryValidator _validator;
 
     public GetDepartmentByIdQueryHandler(IDepartmentReadOnlyRepository repo, IRedisCacheService<DepartmentQueryModel> cacheService, GetDepartmentByIdQueryValidator validator)

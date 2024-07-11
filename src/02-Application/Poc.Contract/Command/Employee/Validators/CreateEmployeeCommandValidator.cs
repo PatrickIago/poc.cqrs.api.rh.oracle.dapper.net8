@@ -2,13 +2,15 @@
 using Poc.Contract.Command.Employee.Request;
 
 namespace Poc.Contract.Command.Employee.Validators;
-public class CreateEmployeeCommandValidator : AbstractValidator<CreateEmployeeCommand> // Valida como criar um funcionario.
+public class CreateEmployeeCommandValidator : AbstractValidator<CreateEmployeeCommand>
 {
     public CreateEmployeeCommandValidator()
     {
-        RuleFor(Command => Command.Name).NotEmpty()
+        RuleFor(command => command.FirstName)
+            .NotEmpty()
             .MaximumLength(50);
-        RuleFor(Command => Command.Email).NotEmpty()
-            .EmailAddress();
+        RuleFor(command => command.LastName)
+            .NotEmpty()
+            .MaximumLength(50);
     }
 }

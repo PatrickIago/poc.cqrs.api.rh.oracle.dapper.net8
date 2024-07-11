@@ -1,10 +1,8 @@
-﻿using Poc.Domain.Entities.Departament;
-
-namespace Poc.Domain.Entities.Employee.Events;
+﻿using Poc.Domain.Entities.Employee.Events;
 public class EmployeeUpdatedEvent : EmployeeBaseEvent
 {
-    public EmployeeUpdatedEvent(int id, string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartmentEntity department)
-        : base(id, name, email, phoneNumber, hireDate, jobId, salary, managerId, department)
+    public EmployeeUpdatedEvent(decimal employeeId, string firstName, string lastName, string email, string phone, DateTime hireDate, string jobId, decimal salary, decimal commissionPct, int managerId, int departmentId)
+        : base(employeeId, firstName, lastName, email, phone, hireDate, jobId, salary, commissionPct, managerId, departmentId)
     {
     }
 }

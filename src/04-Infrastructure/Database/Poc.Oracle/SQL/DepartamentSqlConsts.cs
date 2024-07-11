@@ -1,4 +1,4 @@
-﻿using Poc.Oracle.DTO; 
+﻿using Poc.Oracle.DTO;
 
 namespace Poc.Oracle.SQL;
 

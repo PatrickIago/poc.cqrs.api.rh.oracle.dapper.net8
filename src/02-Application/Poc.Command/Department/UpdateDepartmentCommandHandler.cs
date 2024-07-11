@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using Poc.Contract.Command.Departament.Interfaces;
 using Poc.Contract.Command.Departament.Request;
 using Poc.Contract.Command.Departament.Validators;
-using Poc.Domain.Entities.Departament;
 
 namespace Poc.Command.Departament;
 
@@ -30,7 +29,7 @@ public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCo
     public async Task<Result> Handle(UpdateDepartmentCommand request, CancellationToken cancellationToken)
     {
         // Validando requisição
-        var validationResult = await _validator.ValidateAsync(request,cancellationToken);
+        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
             return Result.Invalid(validationResult.AsErrors());
 
@@ -39,7 +38,7 @@ public class UpdateDepartmentCommandHandler : IRequestHandler<UpdateDepartmentCo
         if (entity == null)
             return Result.NotFound($"Nenhum registro encontrado pelo Id: {request.Id}");
 
-        entity = new DepartmentEntity(request.Id, request.Name,request.ManagerId,request.Location);
+        entity = new DepartmentEntity(request.Id, request.Name, request.ManagerId, request.Location);
         await _repo.Update(entity);
 
         // Executa eventos

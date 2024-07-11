@@ -1,7 +1,5 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using poc.core.api.net8.User;
 using Poc.Contract.Command.Region.Request;
 using Poc.Contract.Command.Region.Response;
 using Poc.Contract.Query.Region.Request;
@@ -121,7 +119,7 @@ public class RegionController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
-   // [Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
+    // [Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
     public async Task<IActionResult> Delete(decimal id)
         => (await _mediator.Send(new DeleteRegionCommand(id))).ToActionResult();
 }

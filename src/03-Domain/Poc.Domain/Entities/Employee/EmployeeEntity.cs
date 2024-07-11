@@ -1,132 +1,69 @@
 ﻿using poc.core.api.net8;
 using poc.core.api.net8.api.net8.api.net8.Abstractions;
-using Poc.Domain.Entities.Departament;
-using Poc.Domain.Entities.Employee.Events;
-using System.Drawing;
 
 namespace Poc.Domain.Entities.Employee;
 
-/// <summary>
-/// Representa a entidade de um funcionário.
-/// </summary>
 public class EmployeeEntity : BaseEOraclentity, IAggregateRoot
 {
-    /// <summary>
-    /// Obtém ou define o ID do funcionário.
-    /// </summary>
-    public int Id { get; private set; }
+    public decimal EmployeeId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public string Phone { get; set; }
+    public DateTime HireDate { get; set; }
+    public string JobId { get; set; }
+    public decimal Salary { get; set; }
+    public decimal CommissionPct { get; set; }
+    public int ManagerId { get; set; }
+    public int DepartmentId { get; set; }
 
-    /// <summary>
-    /// Obtém ou define o nome do funcionário.
-    /// </summary>
-    public string Name { get; private set; }
-
-    /// <summary>
-    /// Obtém ou define o e-mail do funcionário.
-    /// </summary>
-    public string Email { get; private set; }
-
-    /// <summary>
-    /// Obtém ou define o número de telefone do funcionário.
-    /// </summary>
-    public string PhoneNumber { get; private set; }
-
-    /// <summary>
-    /// Obtém ou define a data de contratação do funcionário.
-    /// </summary>
-    public DateTime HireDate { get; private set; }
-
-    /// <summary>
-    /// Obtém ou define o ID do cargo do funcionário.
-    /// </summary>
-    public int JobId { get; private set; }
-
-    /// <summary>
-    /// Obtém ou define o salário do funcionário.
-    /// </summary>
-    public decimal Salary { get; private set; }
-
-    /// <summary>
-    /// Obtém ou define o ID do gerente do funcionário.
-    /// </summary>
-    public int? ManagerId { get; private set; }
-
-    /// <summary>
-    /// Obtém ou define o departamento ao qual o funcionário está associado.
-    /// </summary>
-    public DepartmentEntity Department { get; private set; }
-
-    /// <summary>
-    /// Construtor padrão da classe EmployeeEntity.
-    /// </summary>
     public EmployeeEntity()
     {
     }
 
-    /// <summary>
-    /// Construtor para criar um novo funcionário.
-    /// </summary>
-    /// <param name="name">Nome do funcionário.</param>
-    /// <param name="email">E-mail do funcionário.</param>
-    /// <param name="phoneNumber">Número de telefone do funcionário.</param>
-    /// <param name="hireDate">Data de contratação do funcionário.</param>
-    /// <param name="jobId">ID do cargo do funcionário.</param>
-    /// <param name="salary">Salário do funcionário.</param>
-    /// <param name="managerId">ID do gerente do funcionário.</param>
-    /// <param name="department">Departamento ao qual o funcionário está associado.</param>
-    public EmployeeEntity(string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartmentEntity department)
+    public EmployeeEntity(string firstName, string lastName, string email, string phone, DateTime hireDate, string jobId, decimal salary, decimal commissionPct, int managerId, int departmentId)
     {
-        Name = name;
+        FirstName = firstName;
+        LastName = lastName;
         Email = email;
-        PhoneNumber = phoneNumber;
+        Phone = phone;
         HireDate = hireDate;
         JobId = jobId;
         Salary = salary;
+        CommissionPct = commissionPct;
         ManagerId = managerId;
-        Department = department;
-
-        AddDomainEvent(new EmployeeCreatedEvent(Id,Name, Email, PhoneNumber, HireDate, JobId, Salary, ManagerId, Department));
+        DepartmentId = departmentId;
+        AddDomainEvent(new EmployeeCreatedEvent(EmployeeId, FirstName, LastName, Email, Phone, HireDate, JobId, Salary, CommissionPct, ManagerId, DepartmentId));
     }
 
-    /// <summary>
-    /// Atualiza os detalhes do funcionário.
-    /// </summary>
-    /// <param name="name">Nome do funcionário.</param>
-    /// <param name="email">E-mail do funcionário.</param>
-    /// <param name="phoneNumber">Número de telefone do funcionário.</param>
-    /// <param name="hireDate">Data de contratação do funcionário.</param>
-    /// <param name="jobId">ID do cargo do funcionário.</param>
-    /// <param name="salary">Salário do funcionário.</param>
-    /// <param name="managerId">ID do gerente do funcionário.</param>
-    /// <param name="department">Departamento ao qual o funcionário está associado.</param>
-    public EmployeeEntity(int id, string name, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, DepartmentEntity department)
+    public EmployeeEntity(decimal employeeId, string firstName, string lastName, string email, string phone, DateTime hireDate, string jobId, decimal salary, decimal commissionPct, int managerId, int departmentId)
     {
-        Id = id;
-        Name = name;
+        EmployeeId = employeeId;
+        FirstName = firstName;
+        LastName = lastName;
         Email = email;
-        PhoneNumber = phoneNumber;
+        Phone = phone;
         HireDate = hireDate;
         JobId = jobId;
         Salary = salary;
+        CommissionPct = commissionPct;
         ManagerId = managerId;
-        Department = department;
-
-        AddDomainEvent(new EmployeeUpdatedEvent(Id, Name, Email, PhoneNumber, HireDate, JobId, Salary, ManagerId, Department));
+        DepartmentId = departmentId;
+        AddDomainEvent(new EmployeeUpdatedEvent(EmployeeId, FirstName, LastName, Email, Phone, HireDate, JobId, Salary, CommissionPct, ManagerId, DepartmentId));
     }
 
-    /// <summary>
-    /// Exclui o funcionário.
-    /// </summary>
-    public EmployeeEntity(int id)
+    public EmployeeEntity(decimal employeeId)
     {
-        AddDomainEvent(new EmployeeDeletedEvent(Id, Name, Email, PhoneNumber, HireDate, JobId, Salary, ManagerId, Department));
+        EmployeeId = employeeId;
+        AddDomainEvent(new EmployeeDeletedEvent(EmployeeId, FirstName, LastName, Email, Phone, HireDate, JobId, Salary, CommissionPct, ManagerId, DepartmentId));
     }
 
+    // Este método permitirá definir o RegionId após a entidade ser criada.
     public void SetEmployeeId(decimal employeeId)
     {
-        if (employeeId == default)
+        if (EmployeeId == default)
         {
-            employeeId = Id;
+            EmployeeId = employeeId;
         }
         else
         {

@@ -1,30 +1,30 @@
-﻿using Poc.Domain.Entities.Departament;
-
-namespace Poc.Contract.Query.Employee.ViewModels;
+﻿namespace Poc.Contract.Query.Employee.ViewModels;
 public class EmployeeQueryModel
 {
-    public int Id { get; private set; }
-    public string Name { get; private set; }
-    public string Email { get; private set; }
-    public string PhoneNumber { get; private set; }
-    public DateTime HireDate { get; private set; }
-    public int JobId { get; private set; }
-    public int? ManagerId { get; private set; }
-    public DepartmentEntity Department { get; private set; }
+    public decimal EmployeeId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public string Phone { get; set; }
+    public DateTime HireDate { get; set; }
+    public string JobId { get; set; }
+    public decimal Salary { get; set; }
+    public decimal CommissionPct { get; set; }
+    public int ManagerId { get; set; }
+    public int DepartmentId { get; set; }
 
-    public EmployeeQueryModel()
+    public EmployeeQueryModel(decimal employeeId, string firstName, string lastName, string email, string phone, DateTime hireDate, string jobId, decimal salary, decimal commissionPct, int managerId, int departmentId)
     {
-    }
-
-    public EmployeeQueryModel(int id, string name, string email, string phoneNumber, DateTime hireDate, int jobId, int managerID,DepartmentEntity departament)
-    {
-        Id = id;
-        Name = name;
+        EmployeeId = employeeId;
+        FirstName = firstName;
+        LastName = lastName;
         Email = email;
-        PhoneNumber = phoneNumber;
+        Phone = phone;
         HireDate = hireDate;
         JobId = jobId;
-        ManagerId = managerID;
-        Department = departament;
+        Salary = salary;
+        CommissionPct = commissionPct;
+        ManagerId = managerId;
+        DepartmentId = departmentId;
     }
 }

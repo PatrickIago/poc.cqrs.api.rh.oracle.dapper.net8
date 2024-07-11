@@ -8,6 +8,6 @@ public class CreateDepartmentCommandValidator : AbstractValidator<CreateDepartme
     {
         RuleFor(Command => Command.Name)
             .NotEmpty()
-            .MaximumLength(30);      
+            .MaximumLength(30);
     }
 }

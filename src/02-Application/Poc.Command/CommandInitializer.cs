@@ -19,7 +19,6 @@ using Poc.Contract.Command.Region.Request;
 using Poc.Contract.Command.Region.Response;
 using Poc.Contract.Command.Region.Validators;
 using Poc.Domain.Entities.Department.Events;
-using Poc.Domain.Entities.Employee.Events;
 using Poc.Domain.Entities.Region.Events;
 
 namespace Poc.Command;
@@ -70,13 +69,13 @@ public class CommandInitializer
         services.AddTransient<DeleteEmployeeCommandValidator>();
 
         //DEPARTAMENT
-        services.AddTransient<IRequestHandler<CreateDepartmentCommand,Result<CreateDepartmentResponse>>,CreateDepartmentCommandHandler>();
+        services.AddTransient<IRequestHandler<CreateDepartmentCommand, Result<CreateDepartmentResponse>>, CreateDepartmentCommandHandler>();
         services.AddTransient<CreateDepartmentCommandValidator>();
         services.AddTransient<INotificationHandler<DepartmentCreatedEvent>, DepartmentCreateEventHandler>();
 
-        services.AddTransient<IRequestHandler<UpdateDepartmentCommand,Result>, UpdateDepartmentCommandHandler>();
+        services.AddTransient<IRequestHandler<UpdateDepartmentCommand, Result>, UpdateDepartmentCommandHandler>();
         services.AddTransient<UpdateDepartmentCommandValidator>();
-        services.AddTransient<INotificationHandler<DepartmentUpdatedEvent>,DepartmentUpdateEventHandler>();
+        services.AddTransient<INotificationHandler<DepartmentUpdatedEvent>, DepartmentUpdateEventHandler>();
 
         services.AddTransient<IRequestHandler<DeleteDepartmentCommand, Result>, DeleteDepartmentCommandHandler>();
         services.AddTransient<INotificationHandler<DepartmentDeletedEvent>, DepartmentDeleteEventHandler>();

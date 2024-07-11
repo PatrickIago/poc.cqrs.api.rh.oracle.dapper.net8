@@ -1,25 +1,23 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using poc.core.api.net8.User;
 using Poc.Contract.Command.Employee.Request;
 using Poc.Contract.Command.Employee.Response;
 using Poc.Contract.Query.Employee.Request;
 using Poc.Contract.Query.Employee.ViewModels;
 using Poc.RH.API.Extensions;
 using Poc.RH.API.Models;
-using Refit;
 using System.ComponentModel;
 using System.Net.Mime;
 
 namespace Poc.RH.API.Controllers;
 
 /// <summary>
-/// Controlador responsável por operações relacionadas a empregados.
+/// Controlador responsável por operações relacionadas a empregado.
 /// </summary>
 [Route("api/v1/[controller]")]
 [Produces("application/json")]
 [ApiController]
-[Description("Controller responsável por cadastrar empregados.")]
+[Description("Controller responsável por cadastrar empregado.")]
 [ApiExplorerSettings(GroupName = "Employee")]
 public class EmployeeController : ControllerBase
 {
@@ -27,7 +25,7 @@ public class EmployeeController : ControllerBase
     private readonly ILogger<EmployeeController> _logger;
 
     /// <summary>
-    /// Construtor do controlador de empregados.
+    /// Construtor do controlador de empregado.
     /// </summary>
     /// <param name="logger">Serviço para log de operações e erros.</param>
     /// <param name="mediator">Mediador para operações CQRS.</param>
@@ -45,7 +43,7 @@ public class EmployeeController : ControllerBase
     [HttpGet]
     [Consumes(MediaTypeNames.Application.Json)]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Models.ApiResponse<List<EmployeeQueryModel>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<List<EmployeeQueryModel>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
     //[Authorize(Roles = $"{RoleUserAuthConstants.Employee}")]
     public async Task<IActionResult> GetAll()
@@ -62,12 +60,12 @@ public class EmployeeController : ControllerBase
     [HttpGet("{id}")]
     [Consumes(MediaTypeNames.Application.Json)]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Models.ApiResponse<EmployeeQueryModel>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<EmployeeQueryModel>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
     //[Authorize(Roles = $"{RoleUserAuthConstants.Employee}")]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetById(decimal id)
         => (await _mediator.Send(new GetEmployeeByIdQuery(id))).ToActionResult();
 
     /// <summary>
@@ -80,7 +78,7 @@ public class EmployeeController : ControllerBase
     [HttpPost]
     [Consumes(MediaTypeNames.Application.Json)]
     [Produces(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(typeof(Models.ApiResponse<CreateEmployeeResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse<CreateEmployeeResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
     //[Authorize(Roles = $"{RoleUserAuthConstants.Employee}")]
@@ -122,6 +120,6 @@ public class EmployeeController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
     //[Authorize(Roles = $"{RoleUserAuthConstants.Employee}")]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(decimal id)
         => (await _mediator.Send(new DeleteEmployeeCommand(id))).ToActionResult();
 }

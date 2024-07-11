@@ -1,16 +1,17 @@
 ﻿using FluentValidation;
 using Poc.Contract.Command.Employee.Request;
-
 namespace Poc.Contract.Command.Employee.Validators;
 public class UpdateEmployeeCommandValidator : AbstractValidator<UpdateEmployeeCommand>
 {
     public UpdateEmployeeCommandValidator()
     {
-        RuleFor(Command => Command.Id)
+        RuleFor(command => command.EmployeeId)
             .NotEmpty();
-        RuleFor(Command => Command.Name).NotEmpty()
-           .MaximumLength(50);
-        RuleFor(Command => Command.Email).NotEmpty()
-            .EmailAddress();
+        RuleFor(command => command.FirstName)
+         .NotEmpty()
+         .MaximumLength(50);
+        RuleFor(command => command.LastName)
+            .NotEmpty()
+            .MaximumLength(50);
     }
 }

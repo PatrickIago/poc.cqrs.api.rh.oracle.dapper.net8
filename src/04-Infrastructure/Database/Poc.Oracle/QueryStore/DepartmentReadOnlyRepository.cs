@@ -2,7 +2,6 @@
 using Dapper;
 using Poc.Contract.Query.Departament.Interfaces;
 using Poc.Contract.Query.Departament.ViewModels;
-using Poc.Domain.Entities.Departament;
 using Poc.Oracle.Context;
 using Poc.Oracle.SQL;
 using System.Data;
@@ -52,4 +51,3 @@ public class DepartmentReadOnlyRepository : IDepartmentReadOnlyRepository
         return mapper;
     }
 }
-

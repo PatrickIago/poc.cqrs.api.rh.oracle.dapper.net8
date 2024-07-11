@@ -13,28 +13,30 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
 {
     private readonly UpdateEmployeeCommandValidator _validator;
     private readonly IEmployeeWriteOnlyRepository _repo;
-    private readonly IMapper _mapper;
     private readonly ILogger<UpdateEmployeeCommandHandler> _logger;
     private readonly IMediator _mediator;
+    private readonly IMapper _mapper;
 
-    public UpdateEmployeeCommandHandler(UpdateEmployeeCommandValidator validator, IEmployeeWriteOnlyRepository repo, IMapper mapper, ILogger<UpdateEmployeeCommandHandler> logger, IMediator mediator)
+    public UpdateEmployeeCommandHandler(UpdateEmployeeCommandValidator validator, IEmployeeWriteOnlyRepository repo, ILogger<UpdateEmployeeCommandHandler> logger, IMediator mediator, IMapper mapper)
     {
         _validator = validator;
         _repo = repo;
-        _mapper = mapper;
         _logger = logger;
         _mediator = mediator;
+        _mapper = mapper;
     }
 
     public async Task<Result> Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
     {
-       var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
             return Result.Invalid(validationResult.AsErrors());
 
-        var entity = new EmployeeEntity(request.Id,request.Name, request.Email, request.PhoneNumber, request.HireDate, request.JobId, request.Salary, request.ManagerId, request.Department);
-        await _repo.Get(request.Id);
+        var entity = await _repo.Get(request.EmployeeId);
+        if (entity == null)
+            return Result.NotFound($"Nenhum registro encontrado pelo Id:{request.EmployeeId}");
 
+        entity = new EmployeeEntity(request.EmployeeId, request.FirstName, request.LastName, request.Email, request.Phone, request.HireDate,request.JobId, request.Salary, request.CommissionPct, request.ManagerId, request.DepartmentId);
         await _repo.Update(entity);
 
         foreach (var domainEvent in entity.DomainEvents)
@@ -42,7 +44,6 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
 
         entity.ClearDomainEvents();
 
-        return Result.SuccessWithMessage("Funcionario atualizado com sucesso!");
-
+        return Result.SuccessWithMessage("Atualizado com sucesso!");
     }
 }

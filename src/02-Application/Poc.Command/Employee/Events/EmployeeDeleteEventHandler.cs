@@ -1,10 +1,9 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using Poc.Contract.Query.Employee.Interfaces;
-using Poc.Contract.Query.Employee.ViewModels;
 using poc.core.api.net8.Interface;
-using Poc.Domain.Entities.Employee.Events;
+using Poc.Contract.Query.Employee.Interfaces;
 using Poc.Contract.Query.Employee.Request;
+using Poc.Contract.Query.Employee.ViewModels;
 
 namespace Poc.Command.Employee.Events;
 

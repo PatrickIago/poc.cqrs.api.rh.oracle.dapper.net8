@@ -2,5 +2,5 @@
 public class CreateDepartmentResponse
 {
     public CreateDepartmentResponse(decimal id) => Id = id;
-    public decimal Id { get;}
+    public decimal Id { get; }
 }

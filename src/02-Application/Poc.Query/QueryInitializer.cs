@@ -1,17 +1,17 @@
-﻿using Ardalis.Result; 
-using MediatR; 
+﻿using Ardalis.Result;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Poc.Contract.Query.Departament.Request;
 using Poc.Contract.Query.Departament.Validators;
 using Poc.Contract.Query.Departament.ViewModels;
 using Poc.Contract.Query.Employee.Request;
 using Poc.Contract.Query.Employee.Validators;
-using Poc.Contract.Query.Employee.ViewModels; 
-using Poc.Contract.Query.Region.Request; 
-using Poc.Contract.Query.Region.Validators; 
+using Poc.Contract.Query.Employee.ViewModels;
+using Poc.Contract.Query.Region.Request;
+using Poc.Contract.Query.Region.Validators;
 using Poc.Contract.Query.Region.ViewModels;
 using Poc.Query.Departament;
-using Poc.Query.Employee; 
+using Poc.Query.Employee;
 using Poc.Query.Region;
 
 namespace Poc.Query;

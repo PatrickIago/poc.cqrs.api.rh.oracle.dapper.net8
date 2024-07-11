@@ -1,12 +1,11 @@
 ﻿using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
-using MediatR; 
-using Microsoft.Extensions.Logging;  
-using Poc.Contract.Command.Departament.Interfaces;  
-using Poc.Contract.Command.Departament.Request; 
-using Poc.Contract.Command.Departament.Response;  
-using Poc.Contract.Command.Departament.Validators;  
-using Poc.Domain.Entities.Departament; 
+using MediatR;
+using Microsoft.Extensions.Logging;
+using Poc.Contract.Command.Departament.Interfaces;
+using Poc.Contract.Command.Departament.Request;
+using Poc.Contract.Command.Departament.Response;
+using Poc.Contract.Command.Departament.Validators;
 
 namespace Poc.Command.Departament;
 

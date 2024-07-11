@@ -1,5 +1,4 @@
-﻿using Poc.Domain.Entities.Departament;
-namespace Poc.Oracle.DTO;
+﻿namespace Poc.Oracle.DTO;
 public class DepartmentSqlDTO
 {
     public string Name { get; set; }
@@ -9,6 +8,6 @@ public class DepartmentSqlDTO
 
     public DepartmentEntity MapToResult()
     {
-        return new DepartmentEntity(Id,Name,ManagerId,Location);
+        return new DepartmentEntity(Id, Name, ManagerId, Location);
     }
 }

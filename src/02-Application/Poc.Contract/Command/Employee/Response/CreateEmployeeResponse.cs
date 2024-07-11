@@ -1,6 +1,6 @@
 ﻿namespace Poc.Contract.Command.Employee.Response;
-public class CreateEmployeeResponse // Resposta de um comando de criação.
+public class CreateEmployeeResponse
 {
-    public CreateEmployeeResponse(int id) => Id = id;
-    public int Id { get; }
+    public CreateEmployeeResponse(decimal id) => EmployeeId = id;
+    public decimal EmployeeId { get; }
 }

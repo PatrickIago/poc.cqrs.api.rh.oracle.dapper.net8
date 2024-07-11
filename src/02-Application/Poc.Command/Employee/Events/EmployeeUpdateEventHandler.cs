@@ -1,10 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using poc.core.api.net8.Interface;
 using Poc.Contract.Query.Employee.Interfaces;
 using Poc.Contract.Query.Employee.ViewModels;
-using poc.core.api.net8.Interface;
-using Poc.Domain.Entities.Employee.Events;
-using Poc.Contract.Query.Employee.Request;
 
 namespace Poc.Command.Employee.Events;
 public class EmployeeUpdateEventHandler : INotificationHandler<EmployeeUpdatedEvent>
@@ -23,7 +21,7 @@ public class EmployeeUpdateEventHandler : INotificationHandler<EmployeeUpdatedEv
 
     public async Task Handle(EmployeeUpdatedEvent notification, CancellationToken cancellationToken)
     {
-        const string cacheKey = nameof(GetEmployeeQuery);
+        const string cacheKey = nameof(EmployeeQueryModel);
         await _cacheService.DeleteAsync(cacheKey);
         await _cacheService.GetOrCreateAsync(cacheKey, _repo.Get, TimeSpan.FromHours(2));
     }

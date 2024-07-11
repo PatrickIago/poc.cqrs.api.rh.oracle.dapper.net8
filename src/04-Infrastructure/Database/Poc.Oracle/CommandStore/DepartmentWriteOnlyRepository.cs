@@ -2,8 +2,6 @@
 using Dapper;
 using Poc.Contract.Command.Departament.Interfaces;
 using Poc.Contract.Query.Departament.ViewModels;
-using Poc.Domain.Entities.Departament;
-using Poc.Domain.Entities.Region;
 using Poc.Oracle.Context;
 using Poc.Oracle.SQL;
 using System.Data;
