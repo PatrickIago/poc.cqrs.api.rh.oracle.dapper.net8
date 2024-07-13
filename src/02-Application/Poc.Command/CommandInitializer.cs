@@ -5,6 +5,8 @@ using Poc.Command.Departament;
 using Poc.Command.Departament.Events;
 using Poc.Command.Employee;
 using Poc.Command.Employee.Events;
+using Poc.Command.JobHistory;
+using Poc.Command.JobHistory.Events;
 using Poc.Command.Notification;
 using Poc.Command.Region;
 using Poc.Command.Region.Events;
@@ -14,11 +16,15 @@ using Poc.Contract.Command.Departament.Validators;
 using Poc.Contract.Command.Employee.Request;
 using Poc.Contract.Command.Employee.Response;
 using Poc.Contract.Command.Employee.Validators;
+using Poc.Contract.Command.JobHistory.Request;
+using Poc.Contract.Command.JobHistory.Response;
+using Poc.Contract.Command.JobHistory.Validators;
 using Poc.Contract.Command.Notification.Request;
 using Poc.Contract.Command.Region.Request;
 using Poc.Contract.Command.Region.Response;
 using Poc.Contract.Command.Region.Validators;
 using Poc.Domain.Entities.Department.Events;
+using Poc.Domain.Entities.JobHistory.Events;
 using Poc.Domain.Entities.Region.Events;
 
 namespace Poc.Command;
@@ -81,8 +87,23 @@ public class CommandInitializer
         services.AddTransient<INotificationHandler<DepartmentDeletedEvent>, DepartmentDeleteEventHandler>();
         services.AddTransient<DeleteDepartmentCommandValidator>();
 
+        // JOBHISTORY
+        services.AddTransient<IRequestHandler<CreateJobHistoryCommand, Result<CreateJobHistoryResponse>>, CreateJobHistoryCommandHandler>();
+        services.AddTransient<CreateJobHistoryCommandValidator>();
+        services.AddTransient<INotificationHandler<JobHistoryCreatedEvent>, JobHistoryCreatedEventHandler>();
 
+        services.AddTransient<IRequestHandler<UpdateJobHistoryCommand, Result>, UpdateJobHistoyCommandHandler>(); 
+        services.AddTransient<UpdateJobHistoryCommandValidator>();
+        services.AddTransient<INotificationHandler<JobHistoryUpdatedEvent>, JobHistoryUpdateEventHandler>();
 
-        #endregion
+        services.AddTransient<IRequestHandler<DeleteJobHistoryCommand, Result>, DeleteJobHistoryCommandHandler>();
+        services.AddTransient<DeleteJobHistoyCommandValidator>();
+        services.AddTransient<INotificationHandler<JobHistoryDeletedEvent>, JobHistoryDeleteEventHandler>();
     }
+
+
+
+
+    #endregion
 }
+

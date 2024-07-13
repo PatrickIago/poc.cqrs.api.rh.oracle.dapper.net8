@@ -58,7 +58,6 @@ public class EmployeeEntity : BaseEOraclentity, IAggregateRoot
         AddDomainEvent(new EmployeeDeletedEvent(EmployeeId, FirstName, LastName, Email, Phone, HireDate, JobId, Salary, CommissionPct, ManagerId, DepartmentId));
     }
 
-    // Este método permitirá definir o RegionId após a entidade ser criada.
     public void SetEmployeeId(decimal employeeId)
     {
         if (EmployeeId == default)
