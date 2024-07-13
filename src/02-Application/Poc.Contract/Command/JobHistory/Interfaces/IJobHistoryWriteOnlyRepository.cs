@@ -7,4 +7,5 @@ public interface IJobHistoryWriteOnlyRepository
     Task<bool> Update(JobHistoryEntity jobHistory);
     Task<bool> Delete(decimal employeeId);
     Task<JobHistoryEntity> Get(decimal id);
+    Task<List<JobHistoryQueryModel>> GetByEmployeeId(decimal employeeId);
 }

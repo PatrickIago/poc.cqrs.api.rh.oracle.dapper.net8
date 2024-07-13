@@ -16,6 +16,6 @@ public class EmployeeSqlDTO
 
     public EmployeeEntity MapToResult()
     {
-        return new EmployeeEntity(EmployeeId, FirstName, LastName, Email, Phone, HireDate,JobId,Salary, CommissionPct, ManagerId, DepartmentId);
+        return new EmployeeEntity(EmployeeId, FirstName, LastName, Email, Phone, HireDate, JobId, Salary, CommissionPct, ManagerId, DepartmentId);
     }
 }

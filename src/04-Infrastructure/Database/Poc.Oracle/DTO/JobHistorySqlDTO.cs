@@ -10,6 +10,6 @@ public class JobHistorySqlDTO
 
     public JobHistoryEntity MapToResult()
     {
-        return new JobHistoryEntity(EmployeeId,StartDate,EndDate,JobId,DepartmentId);
+        return new JobHistoryEntity(EmployeeId, StartDate, EndDate, JobId, DepartmentId);
     }
 }

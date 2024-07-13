@@ -11,7 +11,7 @@ public class EmployeeEntity : BaseEOraclentity, IAggregateRoot
     public string Email { get; set; }
     public string Phone { get; set; }
     public DateTime HireDate { get; set; }
-    public string JobId { get; set; }
+    public string? JobId { get; set; }
     public decimal Salary { get; set; }
     public decimal CommissionPct { get; set; }
     public int ManagerId { get; set; }

@@ -2,5 +2,5 @@
 public class CreateJobHistoryResponse
 {
     public CreateJobHistoryResponse(decimal id) => EmployeeId = id;
-    public decimal EmployeeId  { get; set; }
+    public decimal EmployeeId { get; set; }
 }

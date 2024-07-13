@@ -20,7 +20,7 @@ public class MappingProfile : Profile
         CreateMap<EmployeeQueryModel, EmployeeEntity>();
         CreateMap<DepartmentEntity, DepartmentQueryModel>();
         CreateMap<DepartmentQueryModel, DepartmentEntity>();
-        CreateMap<JobHistoryQueryModel,JobHistoryEntity>();
+        CreateMap<JobHistoryQueryModel, JobHistoryEntity>();
         CreateMap<JobHistoryEntity, JobHistoryQueryModel>();
 
 

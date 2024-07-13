@@ -1,11 +1,11 @@
 ﻿using Ardalis.Result;
+using Ardalis.Result.FluentValidation;
 using MediatR;
-using Poc.Contract.Query.JobHistory.Interfaces;
 using poc.core.api.net8.Interface;
+using Poc.Contract.Query.JobHistory.Interfaces;
 using Poc.Contract.Query.JobHistory.Request;
 using Poc.Contract.Query.JobHistory.Validators;
 using Poc.Contract.Query.JobHistory.ViewModels;
-using Ardalis.Result.FluentValidation;
 namespace Poc.Query.JobHistory;
 public class GetJobHistoryByIdQueryHandler : IRequestHandler<GetJobHistoryByIdQuery, Result<JobHistoryQueryModel>>
 {
@@ -23,7 +23,7 @@ public class GetJobHistoryByIdQueryHandler : IRequestHandler<GetJobHistoryByIdQu
     public async Task<Result<JobHistoryQueryModel>> Handle(GetJobHistoryByIdQuery request, CancellationToken cancellationToken)
     {
         var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-        if (!validationResult.IsValid) 
+        if (!validationResult.IsValid)
             return Result.Invalid(validationResult.AsErrors());
 
         var cacheKey = $"{nameof(GetJobHistoryByIdQuery)}_{request.EmployeeId}";
@@ -31,6 +31,6 @@ public class GetJobHistoryByIdQueryHandler : IRequestHandler<GetJobHistoryByIdQu
         var model = await _cacheService.GetOrCreateAsync(cacheKey, () => _repo.Get(request.EmployeeId), TimeSpan.FromHours(2));
 
         return Result.Success(model);
-        
+
     }
 }

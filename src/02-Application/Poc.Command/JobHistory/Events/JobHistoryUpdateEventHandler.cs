@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MediatR;
+using Microsoft.Extensions.Logging;
+using poc.core.api.net8.Interface;
 using Poc.Contract.Query.JobHistory.Interfaces;
 using Poc.Contract.Query.JobHistory.Request;
 using Poc.Contract.Query.JobHistory.ViewModels;
-using poc.core.api.net8.Interface;
-using MediatR;
-using Poc.Contract.Command.JobHistory.Request;
 using Poc.Domain.Entities.JobHistory.Events;
 namespace Poc.Command.JobHistory.Events;
 public class JobHistoryUpdateEventHandler : INotificationHandler<JobHistoryUpdatedEvent>

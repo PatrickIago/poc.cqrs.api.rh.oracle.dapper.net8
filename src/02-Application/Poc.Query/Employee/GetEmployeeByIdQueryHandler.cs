@@ -32,5 +32,5 @@ public class GetEmployeeByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery,
         var model = await _cacheService.GetOrCreateAsync(cacheKey, () => _repo.Get(request.EmployeeId), TimeSpan.FromHours(2));
 
         return Result.Success(model);
-    } 
+    }
 }

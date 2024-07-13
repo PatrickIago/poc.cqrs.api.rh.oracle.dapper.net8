@@ -1,5 +1,4 @@
 ﻿using Ardalis.Result;
-using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Poc.Contract.Query.Departament.Request;

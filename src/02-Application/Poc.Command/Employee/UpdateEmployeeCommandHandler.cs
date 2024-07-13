@@ -36,7 +36,7 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
         if (entity == null)
             return Result.NotFound($"Nenhum registro encontrado pelo Id:{request.EmployeeId}");
 
-        entity = new EmployeeEntity(request.EmployeeId, request.FirstName, request.LastName, request.Email, request.Phone, request.HireDate,request.JobId, request.Salary, request.CommissionPct, request.ManagerId, request.DepartmentId);
+        entity = new EmployeeEntity(request.EmployeeId, request.FirstName, request.LastName, request.Email, request.Phone, request.HireDate, request.JobId, request.Salary, request.CommissionPct, request.ManagerId, request.DepartmentId);
         await _repo.Update(entity);
 
         foreach (var domainEvent in entity.DomainEvents)

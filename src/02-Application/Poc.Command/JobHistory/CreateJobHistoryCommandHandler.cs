@@ -30,7 +30,7 @@ public class CreateJobHistoryCommandHandler : IRequestHandler<CreateJobHistoryCo
         if (!validationResult.IsValid)
             return Result.Invalid(validationResult.AsErrors());
 
-        var entity = new JobHistoryEntity(request.EmployeeId, request.StartDate, request.EndDate,request.JobId, request.DepartmentId);
+        var entity = new JobHistoryEntity(request.EmployeeId, request.StartDate, request.EndDate, request.JobId, request.DepartmentId);
 
         await _repo.Create(entity);
 

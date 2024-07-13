@@ -7,6 +7,6 @@ public class GetJobHistoryQuery : IRequest<Result<List<JobHistoryQueryModel>>>
 {
     public GetJobHistoryQuery()
     {
-        
+
     }
 }

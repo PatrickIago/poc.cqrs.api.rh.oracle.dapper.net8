@@ -92,7 +92,7 @@ public class CommandInitializer
         services.AddTransient<CreateJobHistoryCommandValidator>();
         services.AddTransient<INotificationHandler<JobHistoryCreatedEvent>, JobHistoryCreatedEventHandler>();
 
-        services.AddTransient<IRequestHandler<UpdateJobHistoryCommand, Result>, UpdateJobHistoyCommandHandler>(); 
+        services.AddTransient<IRequestHandler<UpdateJobHistoryCommand, Result>, UpdateJobHistoyCommandHandler>();
         services.AddTransient<UpdateJobHistoryCommandValidator>();
         services.AddTransient<INotificationHandler<JobHistoryUpdatedEvent>, JobHistoryUpdateEventHandler>();
 
@@ -100,9 +100,6 @@ public class CommandInitializer
         services.AddTransient<DeleteJobHistoyCommandValidator>();
         services.AddTransient<INotificationHandler<JobHistoryDeletedEvent>, JobHistoryDeleteEventHandler>();
     }
-
-
-
 
     #endregion
 }

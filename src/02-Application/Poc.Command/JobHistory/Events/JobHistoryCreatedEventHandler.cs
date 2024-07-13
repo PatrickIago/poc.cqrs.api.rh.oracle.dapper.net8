@@ -25,6 +25,6 @@ public class JobHistoryCreatedEventHandler : INotificationHandler<JobHistoryCrea
     {
         const string cacheKey = nameof(GetJobHistoryQuery);
         await _cacheService.DeleteAsync(cacheKey);
-        await _cacheService.GetOrCreateAsync(cacheKey, _repo.Get,TimeSpan.FromHours(2));
+        await _cacheService.GetOrCreateAsync(cacheKey, _repo.Get, TimeSpan.FromHours(2));
     }
 }

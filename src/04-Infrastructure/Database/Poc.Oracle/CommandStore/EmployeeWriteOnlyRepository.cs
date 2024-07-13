@@ -33,7 +33,7 @@ public class EmployeeWriteOnlyRepository : IEmployeeWriteOnlyRepository
         parameters.Add("PR_EMAIL", employee.Email, DbType.String);
         parameters.Add("PR_PHONE_NUMBER", employee.Phone, DbType.String);
         parameters.Add("PR_HIRE_DATE", employee.HireDate, DbType.DateTime);
-        parameters.Add("PR_JOB_ID", employee.JobId, DbType.String); 
+        parameters.Add("PR_JOB_ID", employee.JobId, DbType.String);
         parameters.Add("PR_SALARY", employee.Salary, DbType.Decimal);
         parameters.Add("PR_COMMISSION_PCT", employee.CommissionPct, DbType.Decimal);
         parameters.Add("PR_MANAGER_ID", employee.ManagerId, DbType.Int32);

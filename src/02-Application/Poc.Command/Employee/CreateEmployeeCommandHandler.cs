@@ -31,7 +31,7 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
         if (!validationResult.IsValid)
             return Result.Invalid(validationResult.AsErrors());
 
-        var entity = new EmployeeEntity(request.FirstName, request.LastName, request.Email, request.Phone, request.HireDate,request.JobId, request.Salary, request.CommissionPct, request.ManagerId, request.DepartmentId);
+        var entity = new EmployeeEntity(request.FirstName, request.LastName, request.Email, request.Phone, request.HireDate, request.JobId, request.Salary, request.CommissionPct, request.ManagerId, request.DepartmentId);
         await _repo.Create(entity);
 
         foreach (var domainEvents in entity.DomainEvents)

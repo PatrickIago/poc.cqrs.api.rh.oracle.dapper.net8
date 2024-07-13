@@ -37,7 +37,7 @@ public class JobHistoryEntity : BaseEOraclentity, IAggregateRoot
     public JobHistoryEntity(decimal employeeId)
     {
         EmployeeId = employeeId;
-        AddDomainEvent(new JobHistoryDeletedEvent(EmployeeId,StartDate,EndDate,JobId,DepartmentId));
+        AddDomainEvent(new JobHistoryDeletedEvent(EmployeeId, StartDate, EndDate, JobId, DepartmentId));
     }
 
     public void SetEmployeeId(decimal employeeId)

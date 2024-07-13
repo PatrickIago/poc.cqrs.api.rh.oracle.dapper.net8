@@ -59,6 +59,19 @@ public class JobHistoryWriteOnlyRepository : IJobHistoryWriteOnlyRepository
         return result;
     }
 
+    public async Task<List<JobHistoryQueryModel>> GetByEmployeeId(decimal employeeId)
+    {
+        using IDbConnection dbConnection = _dbContext.CreateConnection();
+        dbConnection.Open();
+
+        var parameters = new DynamicParameters();
+        parameters.Add("PR_EMPLOYEE_ID", employeeId, DbType.Decimal);
+
+        var result = await dbConnection.QueryAsync<JobHistoryEntity>(JobHistorySqlConsts.SQL_GET_BY_ID, parameters);
+        var mapper = _mapper.Map<List<JobHistoryQueryModel>>(result);
+        return mapper.AsList();
+    }
+
     public async Task<bool> Update(JobHistoryEntity jobHistory)
     {
         using IDbConnection dbConnection = _dbContext.CreateConnection();
@@ -75,4 +88,5 @@ public class JobHistoryWriteOnlyRepository : IJobHistoryWriteOnlyRepository
 
         return affectedRows > 0;
     }
+
 }

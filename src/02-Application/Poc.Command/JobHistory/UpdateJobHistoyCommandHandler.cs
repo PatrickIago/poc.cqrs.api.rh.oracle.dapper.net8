@@ -1,5 +1,4 @@
-﻿using Amazon.Runtime.Internal.Util;
-using Ardalis.Result;
+﻿using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -32,10 +31,10 @@ public class UpdateJobHistoyCommandHandler : IRequestHandler<UpdateJobHistoryCom
             return Result.Invalid(validationResult.AsErrors());
 
         var entity = await _repo.Get(request.EmployeeId);
-        if(entity == null)
+        if (entity == null)
             return Result.NotFound($"Nenhum registro econtrado pelo Id:{request.EmployeeId}");
 
-        entity = new JobHistoryEntity(request.EmployeeId,request.StartDate,request.EndDate,request.JobId,request.DepartmentId);
+        entity = new JobHistoryEntity(request.EmployeeId, request.StartDate, request.EndDate, request.JobId, request.DepartmentId);
         await _repo.Update(entity);
 
         foreach (var domainEvent in entity.DomainEvents)
