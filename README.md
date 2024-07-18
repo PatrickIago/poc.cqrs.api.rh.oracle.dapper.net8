@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Estrutura da API
 - ASP.NET Core 8.0: Framework para desenvolvimento da Microsoft.
 - AutoMapper: Biblioteca para realizar mapeamento entre objetos.
