@@ -5,6 +5,8 @@ using Poc.Command.Departament;
 using Poc.Command.Departament.Events;
 using Poc.Command.Employee;
 using Poc.Command.Employee.Events;
+using Poc.Command.Job;
+using Poc.Command.Job.Events;
 using Poc.Command.JobHistory;
 using Poc.Command.JobHistory.Events;
 using Poc.Command.Notification;
@@ -16,6 +18,9 @@ using Poc.Contract.Command.Departament.Validators;
 using Poc.Contract.Command.Employee.Request;
 using Poc.Contract.Command.Employee.Response;
 using Poc.Contract.Command.Employee.Validators;
+using Poc.Contract.Command.Job.Request;
+using Poc.Contract.Command.Job.Response;
+using Poc.Contract.Command.Job.Validators;
 using Poc.Contract.Command.JobHistory.Request;
 using Poc.Contract.Command.JobHistory.Response;
 using Poc.Contract.Command.JobHistory.Validators;
@@ -24,6 +29,7 @@ using Poc.Contract.Command.Region.Request;
 using Poc.Contract.Command.Region.Response;
 using Poc.Contract.Command.Region.Validators;
 using Poc.Domain.Entities.Department.Events;
+using Poc.Domain.Entities.Job.Events;
 using Poc.Domain.Entities.JobHistory.Events;
 using Poc.Domain.Entities.Region.Events;
 
@@ -99,6 +105,19 @@ public class CommandInitializer
         services.AddTransient<IRequestHandler<DeleteJobHistoryCommand, Result>, DeleteJobHistoryCommandHandler>();
         services.AddTransient<DeleteJobHistoyCommandValidator>();
         services.AddTransient<INotificationHandler<JobHistoryDeletedEvent>, JobHistoryDeleteEventHandler>();
+
+        // JOB
+        services.AddTransient<IRequestHandler<CreateJobCommand, Result<CreateJobResponse>>, CreateJobCommandHandler>();
+        services.AddTransient<CreateJobCommandValidator>();
+        services.AddTransient<INotificationHandler<JobCreatedEvent>, JobCreatedEventHandler>();
+
+        services.AddTransient<IRequestHandler<UpdateJobCommand, Result>, UpdateJobCommandHandler>();
+        services.AddTransient<UpdateJobCommandValidator>();
+        services.AddTransient<INotificationHandler<JobUpdatedEvent>, JobUpdatedEventHandler>();
+
+        services.AddTransient<IRequestHandler<DeleteJobCommand, Result>, DeleteJobCommandHandler>();
+        services.AddTransient<DeleteJobCommandValidator>();
+        services.AddTransient<INotificationHandler<JobDeletedEvent>, JobDeleteEventHandler>();
     }
 
     #endregion

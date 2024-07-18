@@ -7,6 +7,9 @@ using Poc.Contract.Query.Departament.ViewModels;
 using Poc.Contract.Query.Employee.Request;
 using Poc.Contract.Query.Employee.Validators;
 using Poc.Contract.Query.Employee.ViewModels;
+using Poc.Contract.Query.Job.Request;
+using Poc.Contract.Query.Job.Validators;
+using Poc.Contract.Query.Job.ViewModels;
 using Poc.Contract.Query.JobHistory.Request;
 using Poc.Contract.Query.JobHistory.Validators;
 using Poc.Contract.Query.JobHistory.ViewModels;
@@ -15,6 +18,7 @@ using Poc.Contract.Query.Region.Validators;
 using Poc.Contract.Query.Region.ViewModels;
 using Poc.Query.Departament;
 using Poc.Query.Employee;
+using Poc.Query.Job;
 using Poc.Query.JobHistory;
 using Poc.Query.Region;
 
@@ -51,6 +55,11 @@ public class QueryInitializer
         services.AddTransient<IRequestHandler<GetJobHistoryQuery, Result<List<JobHistoryQueryModel>>>, GetJobHistoryQueryHandler>();
         services.AddTransient<IRequestHandler<GetJobHistoryByIdQuery, Result<JobHistoryQueryModel>>, GetJobHistoryByIdQueryHandler>();
         services.AddTransient<GetJobHistoryByIdQueryValidator>();
+
+        // JOBH
+        services.AddTransient<IRequestHandler<GetJobQuery, Result<List<JobQueryModel>>>, GetJobQueryHandler>();
+        services.AddTransient<IRequestHandler<GetJobByIdQuery, Result<JobQueryModel>>, GetJobByIdQueryHandler>();
+        services.AddTransient<GetJobByIdQueryValidator>();
 
         #endregion
     }

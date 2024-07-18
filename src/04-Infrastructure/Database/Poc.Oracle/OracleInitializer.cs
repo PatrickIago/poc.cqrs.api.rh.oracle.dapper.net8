@@ -2,10 +2,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Poc.Contract.Command.Departament.Interfaces;
 using Poc.Contract.Command.Employee.Interfaces;
+using Poc.Contract.Command.Job.Interfaces;
 using Poc.Contract.Command.JobHistory.Interfaces;
 using Poc.Contract.Command.Region.Interfaces;
 using Poc.Contract.Query.Departament.Interfaces;
 using Poc.Contract.Query.Employee.Interfaces;
+using Poc.Contract.Query.Job.Interfaces;
 using Poc.Contract.Query.JobHistory.Interfaces;
 using Poc.Contract.Query.Region.Interfaces;
 using Poc.Oracle.CommandStore;
@@ -37,6 +39,9 @@ public class OracleInitializer
         services.AddTransient<IJobHistoryReadOnlyRepository, JobHistoryReadOnlyRepository>();
         services.AddTransient<IJobHistoryWriteOnlyRepository, JobHistoryWriteOnlyRepository>();
 
+        // JOB
+        services.AddTransient<IJobReadOnlyRepository, JobReadOnlyRepository>();
+        services.AddTransient<IJobWriteOnlyRepository, JobWriteOnlyRepository>();
 
     }
 }

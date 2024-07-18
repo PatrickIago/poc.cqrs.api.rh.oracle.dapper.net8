@@ -32,14 +32,12 @@ public class DepartmentReadOnlyRepository : IDepartmentReadOnlyRepository
     {
         // Cria uma conexão com o banco de dados.
         using IDbConnection dbConnection = _dbContext.CreateConnection();
-
         // Abre a conexão com o banco de dados.
         dbConnection.Open();
 
         var result = await dbConnection.QueryFirstOrDefaultAsync<DepartmentEntity>(
             DepartamentSqlConsts.SQL_GET_BY_ID, new { PR_DEPARTMENT_ID = id });
 
-        // Verifica se o resultado é nulo.
         if (result == null)
         {
             return null;
