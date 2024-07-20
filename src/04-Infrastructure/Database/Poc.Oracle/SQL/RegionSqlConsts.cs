@@ -5,11 +5,13 @@ namespace Poc.Oracle.SQL;
 public static class RegionSqlConsts
 {
     public const string SQL_GET =
-    @$"
-        SELECT REGION_ID as {nameof(RegionSqlDTO.RegionId)}, 
-               REGION_NAME as {nameof(RegionSqlDTO.RegionName)} 
-        FROM HR.REGIONS
-    ";
+   @$"
+    SELECT r.REGION_ID AS {nameof(RegionSqlDTO.RegionId)},
+           r.REGION_NAME AS {nameof(RegionSqlDTO.RegionName)},
+           c.COUNTRY_NAME AS {nameof(RegionSqlDTO.CountryName)}
+    FROM HR.REGIONS r
+    INNER JOIN HR.COUNTRIES c ON r.REGION_ID = c.REGION_ID
+";
 
     public const string SQL_MAX = @$"SELECT MAX(REGION_ID+1) FROM HR.REGIONS";
 
