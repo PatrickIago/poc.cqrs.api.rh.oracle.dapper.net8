@@ -6,9 +6,10 @@ public class RegionSqlDTO
 {
     public decimal RegionId { get; set; }
     public string RegionName { get; set; }
+    public string CountryName { get; set; }
 
     public RegionEntity MapToResult()
     {
-        return new RegionEntity(RegionId, RegionName);
+        return new RegionEntity(RegionId, RegionName,CountryName);
     }
 }
