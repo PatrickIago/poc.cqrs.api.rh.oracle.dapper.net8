@@ -58,17 +58,19 @@ public class RegionsWriteOnlyRepository : IRegionWriteOnlyRepository
         return affectedRows > 0; // Retorna verdadeiro se a operação atualizou uma linha
     }
 
-    public async Task<bool> Delete(decimal regionId)
+    public async Task<bool> Delete(decimal regionId, string user_id_delete)
     {
         using IDbConnection dbConnection = _dbContext.CreateConnection();
         dbConnection.Open();
 
         var parameters = new DynamicParameters();
-        parameters.Add("PR_REGION_ID", regionId, DbType.Int32);
+        parameters.Add("PR_REGION_ID", regionId, DbType.Decimal);
+        parameters.Add("PR_USER_ID_DELETED", user_id_delete, DbType.String);
+        parameters.Add("PR_DELETED_AT", DateTime.Now, DbType.DateTime);
 
         var affectedRows = await dbConnection.ExecuteAsync(RegionSqlConsts.SQL_DELETE, parameters);
 
-        return affectedRows > 0; // Retorna verdadeiro se a operação deletou uma linha
+        return affectedRows > 0;
     }
 
     public async Task<RegionEntity> Get(decimal id)

@@ -10,7 +10,7 @@ public static class RegionSqlConsts
            r.REGION_NAME AS {nameof(RegionSqlDTO.RegionName)},
            c.COUNTRY_NAME AS {nameof(RegionSqlDTO.CountryName)}
       FROM HR.REGIONS r
-      INNER JOIN HR.COUNTRIES c ON r.REGION_ID = c.REGION_ID
+      LEFT JOIN HR.COUNTRIES c ON r.REGION_ID = c.REGION_ID
   ";
 
     public const string SQL_MAX = @$"SELECT MAX(REGION_ID+1) FROM HR.REGIONS";
@@ -21,7 +21,7 @@ public static class RegionSqlConsts
            r.REGION_NAME as {nameof(RegionSqlDTO.RegionName)}, 
            c.COUNTRY_NAME as {nameof(RegionSqlDTO.CountryName)}
        FROM HR.REGIONS r
-       INNER JOIN HR.COUNTRIES c ON r.REGION_ID = c.REGION_ID
+       LEFT JOIN HR.COUNTRIES c ON r.REGION_ID = c.REGION_ID
       WHERE r.REGION_ID = :PR_REGION_ID
   ";
 
@@ -36,7 +36,10 @@ public static class RegionSqlConsts
 
     public const string SQL_DELETE =
     @$"
-        DELETE FROM HR.REGIONS
+        UPDATE HR.REGIONS
+        SET IS_ACTIVE = 0,
+            USER_ID_DELETED = :PR_USER_ID_DELETED,
+            DELETED_AT = :PR_DELETED_AT
         WHERE REGION_ID = :PR_REGION_ID
     ";
 }

@@ -120,6 +120,6 @@ public class RegionController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
     // [Authorize(Roles = $"{RoleUserAuthConstants.Region}")]
-    public async Task<IActionResult> Delete(decimal id)
-        => (await _mediator.Send(new DeleteRegionCommand(id))).ToActionResult();
+    public async Task<IActionResult> Delete(decimal id,string deletedBy)
+        => (await _mediator.Send(new DeleteRegionCommand(id,deletedBy))).ToActionResult();
 }

@@ -40,7 +40,7 @@ public class DeleteRegionCommandHandler : IRequestHandler<DeleteRegionCommand, R
 
         entity = new RegionEntity(request.RegionId);
 
-        await _repo.Delete(entity.RegionId);
+        await _repo.Delete(entity.RegionId, request.UserIdDelete);
 
         // Executa eventos
         foreach (var domainEvent in entity.DomainEvents)
